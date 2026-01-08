@@ -1,23 +1,17 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) { }
+  constructor(private readonly appService: AppService) {}
 
-  @Get('/products')
+  @Get()
   getHello(): string {
     return this.appService.getHello();
   }
 
-  @Post('/users')
-  getUsers(@Body() body: any): string {
-    console.log("POST", body)
-    return body;
-  }
-
-  @Get('/users')
-  getUser(): string {
-    return 'Get users'
+  @Get('verify')
+  getVerify() {
+    return { valid: true };
   }
 }
